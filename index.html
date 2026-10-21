@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arundhathi Dev</title>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:#fff;color:#17171b;font-family:Arial,sans-serif}
+button{font:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible{outline:2px solid #888;outline-offset:5px}
+button:disabled{opacity:.35;cursor:default}
+svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+header{position:sticky;top:0;z-index:10;background:#fffffff5;border-bottom:1px solid #f0f0f0}
+nav{max-width:1440px;margin:auto;min-height:66px;display:flex;justify-content:flex-end;align-items:center;gap:12px;padding:10px 60px}
+nav button{padding:11px 15px;border:0;border-radius:8px;background:transparent;color:#777;font-size:16px}
+nav button:hover{background:#f6f6f7}
+nav button.active{background:#eaeaec;color:#17171b}
+.home{max-width:1440px;min-height:calc(100vh - 66px);margin:auto;padding:110px 60px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center;gap:60px}
+h1{margin:0 0 18px;font-size:clamp(40px,4.4vw,60px);line-height:1.15;letter-spacing:-1px}
+.description{max-width:580px;margin:0;color:#808085;font-size:18px;line-height:1.65}
+.actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:25px}
+.action{display:inline-flex;align-items:center;justify-content:center;gap:13px;border:1px solid #e4e4e7;border-radius:8px;background:white;color:#25252b;padding:12px 17px;font-size:14px}
+.action.primary{background:#080817;border-color:#080817;color:white}
+.action:hover{opacity:.8}
+.socials{display:flex;align-items:center;gap:24px;margin-top:23px}
+.social{display:inline-flex;align-items:center;gap:9px;padding:0;background:none;border:0;color:#83838b;font-size:14px}
+.social svg{width:22px;height:22px}
+.portrait{width:min(100%,500px);aspect-ratio:1;border-radius:50%;overflow:hidden;background:#f1f1f3;box-shadow:0 22px 35px #0000000d;display:grid;place-items:center;justify-self:center}
+.portrait-content{display:flex;flex-direction:column;align-items:center;gap:18px;color:#a1a1aa}
+.portrait svg{width:100px;height:100px;stroke-width:1}
+.portrait span{font-size:14px}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block}
+.github-heatmap {
+    margin-top: 30px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.github-heatmap img {
+    display: block;
+    width: 100%;
+    max-width: 680px;
+    height: auto;
+}
+.section{max-width:1440px;margin:auto;padding:55px 60px 85px}
+h2{font-size:36px;letter-spacing:-1px;margin:0 0 12px}
+.section-description{color:#85858d;font-size:16px;margin:0 0 34px;line-height:1.6}
+
+/* Centered project filters and pagination */
+.project-toolbar{display:flex;flex-direction:column;align-items:center;gap:20px;margin:28px 0 30px}
+.filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.filter{border:1px solid #e5e5e9;background:white;border-radius:7px;color:#74747c;padding:9px 14px;font-size:13px}
+.filter:hover{background:#f5f5f6}
+.filter.active{background:#11111d;border-color:#11111d;color:white}
+.pagination{display:flex;justify-content:center;align-items:center;gap:14px;white-space:nowrap}
+.page-button{border:1px solid #e4e4e8;background:white;border-radius:7px;padding:8px 11px;font-size:12px;color:#444}
+.page-label{color:#85858e;font-size:12px}
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px}
+.card{border:1px solid #e7e7eb;border-radius:12px;overflow:hidden;background:white;display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-3px);box-shadow:0 9px 25px #00000008}
+.project-image{height:190px;background:#f5f5f7;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #ededf0;position:relative}
+.project-image svg{width:58px;height:58px;stroke-width:1.2;color:#9e9ea8}
+.image-label{position:absolute;bottom:16px;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#a0a0aa}
+.card-body{padding:22px;display:flex;flex-direction:column;flex:1}
+.category{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#8a8a94;margin-bottom:10px}
+.card h3{font-size:19px;line-height:1.35;letter-spacing:-.25px;margin:0 0 11px}
+.card p{font-size:14px;line-height:1.65;color:#808089;margin:0 0 22px}
+.card-links{display:flex;gap:17px;margin-top:auto}
+.card-link{border:0;background:none;color:#5f5f69;font-size:12px;padding:0}
+.placeholder-card{border-style:dashed}
+.placeholder-card h3{color:#888}
+.project-note{color:#999;font-size:12px;margin:25px 0 0}
+
+/* Centered skills */
+.skills-section{border-top:1px solid #f1f1f3;text-align:center}
+.skill-groups{display:flex;flex-direction:column;gap:26px}
+.skill-group h3{font-size:18px;font-weight:600;margin:0 0 12px}
+.skill-items{display:flex;justify-content:center;flex-wrap:wrap;gap:22px;align-items:flex-start}
+.skill{width:86px;display:flex;flex-direction:column;align-items:center;gap:8px;padding:8px 4px;border:0;border-radius:8px;background:transparent;color:#777}
+.skill:hover{background:#f5f5f7}
+.mark{width:48px;height:40px;display:flex;align-items:center;justify-content:center;color:var(--color);font-size:25px;font-weight:800;letter-spacing:-1px}
+.mark.word{font-size:13px;letter-spacing:-.4px}
+.mark svg{width:36px;height:36px}
+.skill-label{font-size:11px;line-height:1.35;text-align:center}
+.skill-note{margin:25px 0 0;font-size:11px;color:#aaa}
+
+/* Centered professional journey, with no timeline line or dots */
+.journey-section{border-top:1px solid #f1f1f3}
+.journey-heading{display:flex;flex-direction:column;align-items:center;text-align:center}
+.journey-heading .section-description{margin-bottom:20px}
+.timeline-controls{display:flex;justify-content:center;gap:12px;margin:0 0 28px}
+.arrow{
+    height:38px;
+    width:38px;
+    border:1px solid #2563EB;
+    border-radius:50%;
+    background:#2563EB;
+    color:white;
+    display:grid;
+    place-items:center;
+}
+
+.arrow:hover:not(:disabled){
+    background:#1D4ED8;
+    border-color:#1D4ED8;
+    color:white;
+}
+/* Reference-style cards: content first, category and icon below a divider. */
+.timeline{display:flex;gap:24px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;padding:16px 8px 32px;overscroll-behavior-x:contain}
+.timeline::-webkit-scrollbar{display:none}
+.milestone{flex:0 0 400px;scroll-snap-align:start}
+.milestone-card{width:100%;height:320px;border:1px solid #e5e5ea;border-radius:12px;padding:24px;background:white;text-align:left;display:flex;flex-direction:column;color:inherit;box-shadow:0 10px 25px #0000000c;transition:transform .2s,box-shadow .2s}
+.milestone-card:hover{transform:translateY(-5px);box-shadow:0 15px 30px #00000014}
+.milestone h3{font-size:20px;line-height:1.25;margin:0 0 12px;letter-spacing:-.25px;font-weight:600}
+.organization{font-size:18px;color:#262630;font-weight:500;line-height:1.4;margin:0 0 16px}
+.date{display:flex;align-items:center;gap:8px;font-size:13px;color:#85858f;margin-bottom:16px}
+.date svg{width:16px;height:16px}
+.milestone-description{font-size:14px;line-height:1.6;color:#85858f;margin:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.milestone-category{display:flex;align-items:center;gap:12px;border-top:1px solid #e5e5ea;padding-top:16px;margin-top:auto;flex-shrink:0}
+.milestone-icon{width:40px;height:40px;border-radius:50%;background:var(--category-color,#3b82f6);color:white;display:grid;place-items:center;flex-shrink:0}
+.milestone-icon svg{width:20px;height:20px}
+.milestone-category-label{font-size:14px;font-weight:500;color:#767680}
+@media(prefers-reduced-motion:reduce){.milestone-card{transition:none}.milestone-card:hover{transform:none}}
+.timeline-caption{font-size:11px;color:#999;margin:12px 0 0;text-align:center}
+
+/* Single horizontal footer row */
+footer{border-top:1px solid #eaeaf0;background:#fafafb;overflow-x:auto}
+.footer-row{max-width:1440px;min-width:1000px;margin:auto;padding:42px 60px;display:flex;flex-wrap:nowrap;align-items:flex-start;gap:40px}
+.footer-bio{flex:1.6;min-width:240px;max-width:350px}
+.footer-bio h3{font-size:21px;margin:0 0 12px;letter-spacing:-.4px}
+.footer-bio p{font-size:13px;line-height:1.75;color:#85858e;margin:0}
+.footer-bio .socials{margin-top:16px;gap:18px}
+.footer-column{flex:1;min-width:110px}
+.footer-column.expertise{flex:1.25;min-width:170px}
+footer h4{font-size:14px;margin:3px 0 17px;color:#4c4c56}
+footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+footer li,footer li a{font-size:12px;color:#85858e;line-height:1.5}
+footer li a:hover{color:#17171b}
+.contact-placeholder{border:1px dashed #d8d8df;border-radius:6px;padding:9px 12px;background:transparent;color:#999;font-size:12px;white-space:nowrap}
+.back-top{align-self:center;display:flex;align-items:center;gap:7px;white-space:nowrap;font-size:12px;color:#777}
+.back-top svg{width:15px;height:15px}
+dialog{border:1px solid #e5e5e9;border-radius:14px;max-width:540px;width:calc(100% - 40px);padding:32px;color:#222;box-shadow:0 25px 80px #0002}
+dialog::backdrop{background:#0005}
+dialog h3{font-size:24px;margin:0 0 15px}
+dialog p{color:#777;line-height:1.75;font-size:15px}
+.dialog-category{font-size:11px;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:13px}
+.dialog-close{display:block;margin:25px 0 0 auto;border:1px solid #ddd;background:white;padding:9px 16px;border-radius:7px}
+@media(min-width:1200px){.portrait{width:500px;height:500px}}
+@media(max-width:1050px){
+.home{gap:35px;padding:85px 35px}nav{padding-right:35px}.description{font-size:16px}.section{padding:50px 35px 70px}.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-row{padding:35px;gap:30px}
+}
+@media(max-width:700px){
+nav{justify-content:center;padding:12px;gap:4px}nav button{padding:10px 12px;font-size:14px}.home{grid-template-columns:1fr;padding:60px 24px;gap:35px;min-height:auto}h1{font-size:39px}.portrait{width:min(100%,360px);height:auto;aspect-ratio:1}.section{padding:40px 24px 60px}.project-grid{grid-template-columns:1fr}.project-image{height:210px}h2{font-size:29px}.skill-items{gap:10px}.skill{width:74px}.section-description{font-size:14px}.milestone{flex-basis:min(360px,calc(100vw - 64px))}.milestone-card{height:350px}.footer-row{padding:35px 24px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{transition:none}}
+/* Compact skill rows with larger marks. */
+#projects-heading{text-align:center}
+.skill-groups{gap:18px}
+.skill-group h3{margin-bottom:8px}
+.skill-items{gap:10px}
+.skill{width:86px;padding:5px 3px;gap:6px}
+.mark{width:60px;height:52px;font-size:32px}
+.mark svg{width:48px;height:48px}
+.mark.word{font-size:16px}
+.mark img{max-width:60px;max-height:52px;object-fit:contain}
+#dialog-achievements{margin-top:24px}
+#dialog-achievements[hidden],#achievements-empty[hidden]{display:none}
+#achievements-heading{font-size:16px;font-weight:700;margin:0 0 12px}
+.achievement-tags{display:flex;flex-wrap:wrap;gap:8px}
+.achievement-tag{background:#f1f1f4;color:#555560;border-radius:5px;padding:6px 10px;font-size:13px;line-height:1.4}
+@media(max-width:700px){.skill-items{gap:8px}.skill{width:76px}.mark{width:54px;height:48px}.mark svg{width:44px;height:44px}.mark.word{font-size:14px}}
+/* Skill popup project links and black footer typography. */
+#dialog-projects{margin-top:24px}
+#dialog-projects[hidden],#skill-project-empty[hidden]{display:none}
+#projects-built-heading{font-size:16px;font-weight:700;margin:0 0 12px}
+#skill-project-links{display:flex;flex-wrap:wrap;gap:8px}
+.skill-project-link{border:1px solid #e2e2e8;border-radius:6px;padding:8px 11px;background:#f5f5f7;color:#202027;font-size:13px;text-align:left;line-height:1.5}
+.skill-project-link:hover{background:#eaeaf0;border-color:#bbb}
+/* Project tags match the Key Achievements tags. */
+.skill-project-link.achievement-tag{border:0;background:#f1f1f4;color:#555560;border-radius:5px;padding:6px 10px;font-family:inherit;font-size:13px;font-weight:400;line-height:1.4;text-align:left}
+.skill-project-link.achievement-tag:hover{background:#e7e7ec;color:#33333c}
+/* Larger topic filters and consistent project actions. */
+.filters{gap:10px}
+.filter{font-size:15px;font-weight:500;padding:11px 20px;min-height:44px;border-radius:8px}
+.card-links{display:flex;gap:10px;margin-top:auto;padding-top:2px}
+.project-action{display:inline-flex;flex:1;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:8px 9px;border:1px solid #dedee5;border-radius:6px;background:white;color:#33333d;font-size:13px;font-weight:500;text-decoration:none;white-space:nowrap}
+.project-action svg{width:17px;height:17px}
+.project-action:hover:not(:disabled){background:#f3f3f6;border-color:#bcbcc7}
+.project-action:disabled{opacity:1;color:#777780;background:#f5f5f7;border-color:#e5e5ea;cursor:not-allowed}
+.project-title{border:0;padding:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.project-title:hover{text-decoration:underline;text-underline-offset:4px}
+@media(max-width:700px){.filter{font-size:14px;padding:10px 16px}}
+/* Black filter labels and clean outlined project links. */
+.filter{color:#000;background:#fff;border-color:#e4e4e7}
+.filter:hover{color:#000;background:#f7f7f8}
+.filter.active{color:#000;background:#eaeaec;border-color:#eaeaec}
+.project-action{background:#fff;color:#000;border:1px solid #e4e4e7;border-radius:6px;font-weight:400;box-shadow:0 1px 2px #00000003}
+.project-action:disabled{opacity:1;color:#000;background:#fff;border-color:#e4e4e7;cursor:not-allowed;box-shadow:0 1px 2px #00000003}
+.project-action svg{color:inherit}
+.project-action:hover:not(:disabled){background:#f7f7f8;color:#000;border-color:#d4d4d8}
+
+/* Large, readable pagination. */
+.page-label{font-size:18px;font-weight:600;color:#000}
+.page-button{font-size:15px;min-height:42px;padding:10px 16px;color:#000}
+.pagination{gap:20px}
+/* Project case studies; separate from skill and career dialogs. */
+#project-dialog{width:calc(100% - 48px);max-width:1120px;max-height:92dvh;padding:0;border-radius:18px;overflow:auto;overscroll-behavior:contain}
+#project-dialog::backdrop{background:#17171b99;backdrop-filter:blur(5px)}
+.project-detail-bar{position:sticky;top:0;z-index:2;background:#fffffff5;display:flex;justify-content:space-between;align-items:center;padding:18px 32px;border-bottom:1px solid #eee}
+.project-detail-bar span{font-size:13px;color:#777}
+.project-detail-close{border:1px solid #dedee5;border-radius:50%;background:white;width:38px;height:38px;font-size:25px;line-height:1}
+.project-detail-content{padding:44px 48px 48px}
+#project-detail-title{font-size:clamp(28px,4vw,46px);letter-spacing:-1.2px;line-height:1.15;margin:0 0 10px;max-width:900px}
+/* Quiet, readable status badges beneath the project title. */
+.project-detail-status{display:inline-flex;align-items:center;gap:8px;max-width:100%;padding:7px 12px;margin:4px 0 20px;border:1px solid #dbeafe;border-radius:999px;background:#eff6ff;color:#1e40af;font-size:12px;font-weight:600;line-height:1.5;letter-spacing:.1px}
+.project-detail-status[hidden]{display:none}
+.project-detail-status::before{content:"";width:6px;height:6px;flex-shrink:0;border-radius:50%;background:#3b82f6}
+.project-detail-status[data-status="review"]{background:#fffbeb;border-color:#fde68a;color:#92400e}
+.project-detail-status[data-status="review"]::before{background:#d97706}
+.project-detail-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.project-detail-tag{font-size:13px;background:#f0f0f3;color:#34343c;padding:7px 12px;border-radius:6px}
+#project-detail-description{font-size:17px;line-height:1.8;color:#686871;max-width:850px;margin:0 0 34px;white-space:pre-line}
+.project-gallery{display:grid;gap:28px}
+.project-gallery figure{margin:0;min-width:0}
+.project-gallery img,
+.project-gallery video{display:block;width:100%;height:auto;border:1px solid #eee;border-radius:12px;background:#000}
+.project-gallery figcaption{font-size:12px;color:#777;margin-top:10px;line-height:1.6}
+.project-image-placeholder{aspect-ratio:16/9;background:#f6f6f8;border:1px dashed #cfcfd8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:24px;color:#8c8c99}
+.project-image-placeholder svg{width:42px;height:42px;stroke-width:1.2}
+.project-image-placeholder strong{font-size:16px;font-weight:500;color:#666670}
+.project-image-placeholder span{font-size:12px}
+.project-image{cursor:pointer}
+@media(max-width:700px){#project-dialog{width:calc(100% - 20px);max-height:95dvh;border-radius:12px}.project-detail-bar{padding:12px 20px}.project-detail-content{padding:28px 20px}.project-detail-bar span{font-size:12px}#project-detail-description{font-size:15px}.project-image-placeholder{aspect-ratio:4/3}.page-label{font-size:18px}.pagination{gap:14px}}
+/* Explicit paragraphs inherit the project description typography. */
+#project-detail-description{white-space:normal}
+#project-detail-description p{font:inherit;color:inherit;line-height:inherit;margin:0 0 18px;white-space:pre-line}
+#project-detail-description p:last-child{margin-bottom:0}
+
+/* Wide, concise Professional Journey detail cards. */
+#detail-dialog.journey-dialog{width:calc(100% - 64px);max-width:900px;max-height:calc(100dvh - 64px);padding:38px 44px;overflow:auto;border-radius:16px}
+.journey-dialog #dialog-title{font-size:30px;letter-spacing:-.6px;margin:0 0 20px;line-height:1.2}
+.journey-dialog #dialog-category{font-size:12px;line-height:1.6;letter-spacing:.4px;color:#777780;margin-bottom:10px}
+.journey-dialog #dialog-description{white-space:pre-line;font-size:16px;line-height:1.8;color:#666670;margin:0;max-width:78ch}
+.journey-dialog #dialog-achievements{border-top:1px solid #e8e8ec;padding-top:22px;margin-top:24px}
+.journey-dialog .dialog-close{margin-top:24px}
+@media(max-width:700px){
+#detail-dialog.journey-dialog{width:calc(100% - 24px);max-height:calc(100dvh - 24px);padding:28px 24px}
+.journey-dialog #dialog-title{font-size:26px}
+.journey-dialog #dialog-description{font-size:15px;line-height:1.7}
+}
+/* Unavailable project resources remain visible but clearly disabled. */
+.project-action:disabled{color:#9a9aa3;background:#f7f7f8;border-color:#ededf0;cursor:not-allowed;box-shadow:none}
+</style>
+</head>
+<body>
+<header>
+<nav aria-label="Main navigation">
+<button class="active" data-section="home" aria-pressed="true">Home</button>
+<button data-section="projects" aria-pressed="false">Projects</button>
+<button data-section="skills" aria-pressed="false">Skills</button>
+<button data-section="experience" aria-pressed="false">Experience</button>
+</nav>
+</header>
+
+<main>
+<section class="home" id="home" aria-labelledby="name">
+<div>
+<h1 id="name">Arundhathi Dev</h1>
+<p class="description">Software engineer specializing in AI performance optimization, with experience in GPU kernels, sparse attention, and distributed inference. I work with CUDA, Triton, and model-serving frameworks to make AI faster and more memory-efficient—from individual kernels to systems across GPUs.</p>
+<div class="actions">
+<a class="action primary" href="mailto:devai@mail.uc.edu">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <path d="m3 6 9 7 9-7"/>
+    </svg>
+    Email Me
+</a>
+<a class="action" href="#projects">View My Work <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"/></svg></a>
+</div>
+<div class="socials" id="hero-socials"></div>
+<div class="github-heatmap">
+    <img
+        src="https://ghchart.rshah.org/40C463/devaru-ai"
+        alt="Arundhathi Dev's GitHub contribution heatmap"
+        loading="lazy"
+    >
+</div>
+</div>
+<div class="portrait">
+    <img src="images/image.jpeg" alt="Arundhathi Dev">
+</div>
+</section>
+
+<section class="section" id="projects" aria-labelledby="projects-heading">
+<h2 id="projects-heading">Projects</h2>
+<div class="project-toolbar">
+<div class="filters" aria-label="Filter projects">
+<button class="filter active" data-filter="All" aria-pressed="true">All</button>
+<button class="filter" data-filter="Research" aria-pressed="false">Research</button>
+<button class="filter" data-filter="GPU Kernels" aria-pressed="false">GPU Kernels</button>
+<button class="filter" data-filter="Inference" aria-pressed="false">Inference</button>
+<button class="filter" data-filter="Open Source" aria-pressed="false">Open Source</button>
+<button class="filter" data-filter="Computer Vision" aria-pressed="false">Computer Vision</button>
+<button class="filter" data-filter="Systems" aria-pressed="false">Systems</button>
+</div>
+<div class="pagination" aria-label="Project pages">
+<button class="page-button" id="previous">← Previous</button>
+<span class="page-label" id="page-label" aria-live="polite"></span>
+<button class="page-button" id="next">Next →</button>
+</div>
+</div>
+<div class="project-grid" id="project-grid"></div>
+<p class="project-note" id="project-note"></p>
+</section>
+
+<section class="section skills-section" id="skills" aria-labelledby="skills-heading">
+<h2 id="skills-heading">Skills &amp; Technologies</h2>
+<p class="section-description">Click on any logo to learn more about my experience.</p>
+<div class="skill-groups" id="skill-groups"></div>
+</section>
+
+<section class="section journey-section" id="experience" aria-labelledby="journey-heading">
+<div class="journey-heading">
+<h2 id="journey-heading">Professional Journey</h2>
+<p class="section-description">My career milestones, achievements, and continuous learning path</p>
+<div class="timeline-controls">
+<button class="arrow" id="timeline-left" aria-label="Scroll timeline left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+<button class="arrow" id="timeline-right" aria-label="Scroll timeline right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+</div>
+</div>
+<div class="timeline" id="timeline" tabindex="0" role="region" aria-label="Career timeline"></div>
+<p class="timeline-caption">Scroll to explore · Click a milestone to read more</p>
+</section>
+</main>
+
+<footer>
+<div class="footer-row">
+<div class="footer-bio">
+<h3>Arundhathi Dev</h3>
+<p>Research student working on efficient AI inference, GPU kernels, and distributed systems.</p>
+<div class="socials" id="footer-socials"></div>
+</div>
+<div class="footer-column">
+<h4>Quick Links</h4>
+<ul><li><a href="#projects">Projects</a></li><li><a href="#skills">Skills</a></li><li><a href="#experience">Experience</a></li></ul>
+</div>
+<div class="footer-column expertise">
+<h4>Expertise</h4>
+<ul><li>GPU Kernel Optimization</li><li>Efficient AI Inference</li><li>Sparse Attention</li><li>Distributed GPU Systems</li><li>Performance Profiling</li></ul>
+</div>
+<div class="footer-column">
+<h4>Contact</h4>
+<a class="contact-placeholder" href="mailto:devai@mail.uc.edu">
+    devai@mail.uc.edu
+</a>
+</div>
+<a class="back-top" href="#home">Back to Top <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6"/></svg></a>
+</div>
+</footer>
+
+<dialog id="project-dialog" aria-labelledby="project-detail-title">
+<div class="project-detail-bar"><span>Project overview</span><button class="project-detail-close" aria-label="Close project" autofocus>×</button></div>
+<div class="project-detail-content"><h2 id="project-detail-title"></h2><div id="project-detail-status" class="project-detail-status" hidden></div><div class="project-detail-tags"></div><div id="project-detail-description"></div><div class="project-gallery"></div></div>
+</dialog>
+<dialog id="detail-dialog" aria-labelledby="dialog-title">
+<div class="dialog-category" id="dialog-category"></div>
+<h3 id="dialog-title"></h3>
+<p id="dialog-description"></p>
+<section id="dialog-achievements" hidden aria-labelledby="achievements-heading">
+<h4 id="achievements-heading">Key Achievements</h4>
+<div id="achievement-tags" class="achievement-tags"></div>
+<p id="achievements-empty" hidden>Achievement details to be added.</p>
+</section>
+<section id="dialog-projects" hidden aria-labelledby="projects-built-heading">
+<h4 id="projects-built-heading">Projects Built</h4>
+<div id="skill-project-links"></div>
+<p id="skill-project-empty" hidden>Associated project to be added.</p>
+</section>
+<button class="dialog-close" id="close-dialog">Close</button>
+</dialog>
+
+<script>
+const drawings={
+matrix:'<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M4 15h16M9 4v16M15 4v16"/>',
+server:'<rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01M12 10v4"/>',
+layers:'<path d="m12 3 10 5-10 5L2 8zM2 12l10 5 10-5M2 16l10 5 10-5"/>',
+chip:'<rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/>',
+chart:'<path d="M4 3v17h17M7 15l4-5 4 2 5-7"/>',
+text:'<path d="M3 5h18M7 5v14m10-14v14M4 19h6m4 0h6"/>',
+plus:'<path d="M12 5v14M5 12h14"/>',
+torch:'<path d="m12 3-6.4 6.4a9 9 0 1 0 12.8 0"/><circle cx="17.7" cy="5.5" r="1" fill="currentColor" stroke="none"/>',
+docker:'<path d="M3 12h17c0 6-4 9-9 9-5 0-8-4-8-9Z"/><path d="M4 8h4v4H4zm4 0h4v4H8zm4 0h4v4h-4zM8 4h4v4H8zm4 0h4v4h-4zm0-4h4v4h-4zM20 12c2-1 3-3 2-5"/>',
+network:'<circle cx="12" cy="12" r="3"/><circle cx="4" cy="4" r="2"/><circle cx="20" cy="4" r="2"/><circle cx="4" cy="20" r="2"/><circle cx="20" cy="20" r="2"/><path d="m6 6 4 4m4 4 4 4m0-12-4 4m-4 4-4 4"/>',
+terminal:'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m6 9 3 3-3 3m6 0h5"/>',
+education:'<path d="m2 8 10-5 10 5-10 5zM6 10v7c4 3 8 3 12 0v-7M22 8v8"/>',
+work:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 12c6 4 12 4 18 0M10 13h4"/>',
+calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18"/>',
+research:'<path d="M9 3h6m-5 0v7L4 20h16l-6-10V3M7 15h10"/>',
+github:'<path d="M9 19c-4 1-4-2-6-2m12 5v-4a3.5 3.5 0 0 0-1-2.7c3.3-.4 6.8-1.6 6.8-7.3a5.7 5.7 0 0 0-1.5-4 5.3 5.3 0 0 0-.1-4s-1.3-.4-4.2 1.5a14.5 14.5 0 0 0-7.6 0C4.5-.4 3.2 0 3.2 0a5.3 5.3 0 0 0-.1 4A5.7 5.7 0 0 0 1.6 8c0 5.7 3.5 6.9 6.8 7.3A3.5 3.5 0 0 0 7.5 18v4" transform="translate(2 1) scale(.85)"/>',
+linkedin:'<rect x="3" y="8" width="4" height="13"/><circle cx="5" cy="4" r="2"/><path d="M11 21V8h4v2c1-2 6-3 6 3v8h-4v-7c0-3-2-3-2 0v7z"/>',
+external:'<path d="M14 3h7v7m0-7L10 14M10 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-5"/>'
+};
+const svg=name=>`<svg viewBox="0 0 24 24" aria-hidden="true">${drawings[name]}</svg>`;
+const dialog=document.getElementById("detail-dialog");
+function showDialog(title,description,category="",achievements=null,projectNames=null,isJourney=false){
+dialog.classList.toggle("journey-dialog",isJourney);
+document.getElementById("dialog-title").textContent=title;
+document.getElementById("dialog-description").textContent=description;
+document.getElementById("dialog-category").textContent=category;
+const achievementSection=document.getElementById("dialog-achievements");
+const tags=document.getElementById("achievement-tags");
+tags.replaceChildren();
+achievementSection.hidden=achievements===null;
+document.getElementById("achievements-empty").hidden=achievements===null||achievements.length>0;
+if(achievements)achievements.forEach(text=>{
+ const tag=document.createElement("span");tag.className="achievement-tag";tag.textContent=text;tags.appendChild(tag);
+});
+const projectSection=document.getElementById("dialog-projects");
+const projectLinks=document.getElementById("skill-project-links");
+projectLinks.replaceChildren();
+projectSection.hidden=projectNames===null;
+document.getElementById("skill-project-empty").hidden=projectNames===null||projectNames.length>0;
+if(projectNames)projectNames.forEach(name=>{
+ const project=projects.find(p=>p.title===name);
+ if(!project)return;
+ const link=document.createElement("button");
+ link.className="skill-project-link achievement-tag";link.textContent=name;
+ link.onclick=()=>{dialog.close();openProject(project)};
+ projectLinks.appendChild(link);
+});
+if(!dialog.open)dialog.showModal();
+}
+document.getElementById("close-dialog").onclick=()=>dialog.close();
+
+function addSocials(id, includeResume) {
+    const links = [
+        ["GitHub", "github", "https://github.com/devaru-ai"],
+        ["LinkedIn", "linkedin", "https://www.linkedin.com/in/devaru-ai/"]
+    ];
+
+    if (includeResume)
+        links.push(["Resume", "external", "#"]);
+
+    links.forEach(([label, icon, url]) => {
+        const a = document.createElement("a");
+        a.className = "social";
+        a.setAttribute("aria-label", label);
+        a.href = url;
+
+        if (url !== "#") {
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+        }
+
+        a.innerHTML = svg(icon) + (label === "Resume" ? "Resume" : "");
+        document.getElementById(id).appendChild(a);
+    });
+}
+addSocials("hero-socials",true);addSocials("footer-socials",false);
+
+const projects=[
+{
+  title:"AdaSparge",
+  modalSubtitle:"Paper Under Review",
+  topics:["Research","GPU Kernels","Inference"],
+  description:"Self-tuning sparse attention for faster, more memory-efficient AI inference.",
+  details:"A closed-loop sparsity controller that adapts attention thresholds online without per-model retuning, exploring efficient attention across language and generative models.",
+  icon:"matrix",
+  image:"images/adasparge.svg"
+},
+{title:"Disaggregated Inference Platform",topics:["Inference"],description:"Exploring prefill–decode separation and KV-cache transfer across GPUs.",details:"Disaggregated Inference Platform (DIP) investigates what limits LLM serving performance when model execution, KV-cache movement, and request orchestration compete for system resources. Inspired by NVIDIA Dynamo’s prefill–decode separation model, the project benchmarks monolithic and disaggregated architectures across A100 and H100 environments, measuring throughput, time to first token, per-token latency, and KV-cache utilization. Experiments with Llama-3-8B and Qwen1.5-14B reveal how context length, model architecture, and concurrency shift serving bottlenecks.\n\nIn A100 phase-disaggregation tests at 2,048-token context and eight concurrent requests, KV-cache transfers took 511–566 ms, comparable to the measured time per output token—highlighting data movement as a critical optimization target. Engine comparisons also demonstrate the impact of prefix reuse: at 4,096-token prompts and 128 concurrent requests, SGLang delivered 1,989 tokens/s versus 159 tokens/s for the tested vLLM configuration under identical-prompt workloads that maximized cache reuse. DIP additionally implements admission-controlled routing, GPU backpressure, and circuit breaking to reject excess load before queues grow unchecked. Together, these experiments connect serving architecture decisions to measurable performance trade-offs.",icon:"server",image:"images/disaggregated-inference.svg"},
+{
+  title: "Cost-Aware Preemption",
+  modalSubtitle: "Will be updated soon",
+  topics: ["Open Source", "Inference"],
+  description: "Improving vLLM scheduling by considering KV memory and recomputation cost.",
+  details: "A vLLM V1 scheduler contribution that selects preemption victims using reclaimable KV memory, recomputation cost, and generation progress.",
+  icon: "layers",
+  image: "images/cost-aware-preemption.svg"
+},
+{title:"Fused GEMM + GELU",topics:["GPU Kernels"],description:"Fused Triton kernels with tiling and occupancy tuning for GPU performance.",details:"Fused GEMM + GELU explores how custom GPU kernels can accelerate matrix multiplication and its surrounding operations through workload-specific optimization. Built with Triton for NVIDIA GPUs, the project combines GEMM, bias addition, and GELU activation, while exploring fused residual processing, shared-memory tiling, asymmetric block layouts, and occupancy autotuning.\n\nBenchmarked on an NVIDIA Tesla T4 with FP32 workloads against cuBLAS under CUDA 12.5, the best tested configuration achieved 1.42× cuBLAS throughput, reaching 3.19 TFLOPS at 0.67 ms versus the baseline’s 0.95 ms. Across most tested matrix shapes, Triton achieved 81–86% of cuBLAS performance, demonstrating both the opportunities and limits of specialized kernel tuning. Experiments used repeated runs after warm-up, randomly initialized inputs, and numerical validation with absolute and relative tolerances of 1×10⁻⁵. The repository includes kernel implementations, benchmark scripts, and latency and throughput plots to make the optimization process reproducible.",icon:"chip",image:"images/fused-gemm-gelu.svg"},
+{title:"Adaptive Fidelity Bayesian Optimization",topics:["Research","Inference"],description:"Reducing the evaluation cost of tuning sparse attention configurations.",details:"AFBS-BO automates one of sparse attention’s most time-consuming steps: finding how aggressively each transformer layer can skip computation without compromising model quality. The framework combines Bayesian optimization for global exploration with binary search for precise local refinement, screening candidate configurations on shorter sequences before validating promising settings at longer context lengths. A Gaussian process surrogate guides the search, while warm-starting across layers reduces repeated optimization work.\n\nIn the reported experiments, the approach achieved 3.4× faster hyperparameter discovery with 8.8× fewer evaluations than exhaustive grid search, reducing the search from 2,100 evaluations to 240. On WikiText-2, it identified configurations with 70.7% attention sparsity and 7.45 perplexity, approaching the Top-K oracle’s 7.42. Multi-input validation and automatic fallback help enforce approximation-error constraints, while layer-specific thresholds accommodate differences in sensitivity throughout the model. The result is a reusable calibration framework that makes sparse attention easier to configure for efficient long-context inference.",icon:"chart",image:"images/adaptive-fidelity-bo.svg"},
+{
+  title: "Efficient OCR Domain Adaptation",
+  topics: ["Research", "Computer Vision"],
+  description: "Adapting text-recognition models with lower training cost and fast inference.",
+  details: "Efficient OCR Domain Adaptation investigates how handwriting recognition can adapt to new document domains without repeatedly retraining an entire end-to-end recognition model. The framework separates visual character detection from linguistic correction, pairing a DINO-DETR detector with interchangeable pretrained language models—T5, ByT5, and BART. Correctors learn to repair recognition errors through synthetically corrupted text, while the visual detector uses lightweight adaptation with line-level supervision.\n\nEvaluated across modern handwriting, cursive text, and historical manuscripts, the system achieved 1.90% character error rate on CVL with T5 and 5.18% on IAM with BART, with reported visual and linguistic adaptation taking approximately 3.5–4 hours on a single A100 GPU. The research also examines how model choice affects transcription fidelity: ByT5 outperformed T5 on the George Washington Papers, while qualitative analysis exposed cases where linguistic correction modernized historical spellings or introduced plausible but incorrect text. This modular approach makes adaptation more practical for document digitization while revealing when language-based correction helps—and when preserving the detector’s output matters more.",
+  icon: "text",
+  image: "images/ocr-domain-adaptation.svg"
+},
+{
+    title: "Python Systems & Runtime Internals",
+    modalSubtitle: "Will be updated soon",
+    topics: ["Languages", "Systems"],
+    description: "Deep dive into CPython runtime internals, memory layout, GIL, and reference counting.",
+    details: "A hands-on breakdown of Python execution fundamentals: bytecode inspection, PyObject structure, memory arenas, dynamic dispatch, and native C-extension interop.",
+    icon: "terminal",
+    image: "images/python-fundamentals.svg"
+  },
+  {
+    title: "C++ Low-Level Design & Systems Architecture",
+    modalSubtitle: "Will be updated soon",
+    topics: ["Languages", "Systems"],
+    description: "Low-level system design, memory management, cache-friendly data structures, and concurrency.",
+    details: "Systematic low-level design in modern C++: RAII, custom memory allocators, lock-free queues, cache alignment, profiling memory layouts, and clean architectural design patterns.",
+    icon: "chip",
+    image: "images/cpp-lld.svg"
+  },
+  {
+    title: "PyTorch Framework & Kernel Internals",
+    modalSubtitle: "Will be updated soon",
+    topics: ["Research", "GPU Kernels"],
+    description: "Deconstructing PyTorch execution graphs, custom autograd engines, and Tensor internals.",
+    details: "Under the hood of PyTorch: implementing custom C++/CUDA autograd functions, inspecting ATen tensor memory representations, dynamic dispatch, and Automatic Mixed Precision mechanics.",
+    icon: "torch",
+    image: "images/pytorch-internals.svg"
+  },
+];
+
+// Technology and implementation tags, separate from project category filters.
+const projectTechnologies = {
+  "AdaSparge": [
+    "Python",
+    "PyTorch",
+    "CUDA",
+    "Triton",
+    "Sparse Attention",
+    "Dynamic Sparsity",
+    "GPU Inference",
+    "Warp Skipping"
+  ],
+  "Disaggregated Inference Platform": [
+    "Python",
+    "CUDA",
+    "vLLM",
+    "SGLang",
+    "Llama 3",
+    "Qwen",
+    "KV Cache",
+    "Prefill–Decode Disaggregation",
+    "Multi-GPU Serving",
+    "NVLink",
+    "Admission Control",
+    "GPU Backpressure"
+  ],
+  "Cost-Aware Preemption": [
+    "Python",
+    "vLLM V1",
+    "KV Cache",
+    "LLM Scheduling",
+    "Memory Management",
+    "Cost-Aware Preemption",
+    "Recomputation"
+  ],
+  "Fused GEMM + GELU": [
+    "Python",
+    "Triton",
+    "CUDA 12.5",
+    "cuBLAS",
+    "GEMM",
+    "GELU",
+    "Kernel Fusion",
+    "Shared-Memory Tiling",
+    "Occupancy Tuning",
+    "FP32",
+    "GPU Benchmarking"
+  ],
+  "Adaptive Fidelity Bayesian Optimization": [
+    "Python",
+    "PyTorch",
+    "CUDA",
+    "Bayesian Optimization",
+    "Gaussian Processes",
+    "Binary Search",
+    "Multi-Fidelity Search",
+    "Sparse Attention",
+    "Hyperparameter Tuning",
+    "WikiText-2"
+  ],
+  "Efficient OCR Domain Adaptation": [
+    "Python",
+    "PyTorch",
+    "CUDA",
+    "DINO-DETR",
+    "T5",
+    "ByT5",
+    "BART",
+    "OCR",
+    "Domain Adaptation",
+    "Synthetic Text Corruption",
+    "Handwriting Recognition"
+  ],
+  "Python Systems & Runtime Internals": [
+    "Python",
+    "CPython",
+    "C Extensions",
+    "Bytecode",
+    "PyObject",
+    "GIL",
+    "Reference Counting",
+    "Memory Arenas",
+    "Dynamic Dispatch"
+  ],
+  "C++ Low-Level Design & Systems Architecture": [
+    "C++",
+    "RAII",
+    "Custom Allocators",
+    "Lock-Free Queues",
+    "Concurrency",
+    "Cache Alignment",
+    "Memory Profiling",
+    "Design Patterns"
+  ],
+  "PyTorch Framework & Kernel Internals": [
+    "Python",
+    "C++",
+    "CUDA",
+    "PyTorch",
+    "ATen",
+    "Autograd",
+    "Automatic Mixed Precision",
+    "Tensor Memory",
+    "Dynamic Dispatch",
+    "Execution Graphs"
+  ]
+};
+
+// PROJECT GALLERIES: edit these arrays to add any number of images or videos.
+// src can be a relative filename ("videos/video.mp4") or an HTTPS URL.
+// Empty src displays an intentional placeholder. Captions are optional.
+const projectGalleries = Object.fromEntries(projects.map(p=>[p.title,[
+ {src:p.image,alt:p.title+" project overview",caption:"",placeholder:"Project overview"}
+]]));
+
+// Project modal video galleries
+projectGalleries["AdaSparge"] = [
+  {
+    src: "videos/AdaSpargeExplainer.mp4",
+    type: "video",
+    caption: "Closed-loop dynamic sparsity control and runtime warp-skipping architecture"
+  }
+];
+
+projectGalleries["Adaptive Fidelity Bayesian Optimization"] = [
+  {
+    src: "videos/SparseAttentionFullExplainer.mp4",
+    type: "video",
+    caption: "AFBS-BO multi-fidelity hyperparameter search and evaluation pipeline"
+  }
+];
+
+projectGalleries["Efficient OCR Domain Adaptation"] = [
+  {
+    src: "videos/EfficientOCRExplainer.mp4",
+    type: "video",
+    caption: "Decoupled detection-and-correction OCR architecture and benchmark results"
+  }
+];
+
+projectGalleries["Fused GEMM + GELU"] = [
+  {
+    src: "videos/FusedGEMMExplainer.mp4",
+    type: "video",
+    caption: "Fused GEMM + Bias + GELU Triton kernel memory pipeline and benchmarks"
+  }
+];
+
+projectGalleries["Disaggregated Inference Platform"] = [
+  {
+    src: "videos/DisaggregatedInferenceExplainer.mp4",
+    type: "video",
+    caption: "Disaggregated serving dynamics, GPU stage matching, and NVLink transfer bottlenecks"
+  }
+];
+
+const projectDialog=document.getElementById("project-dialog");
+let projectTrigger=null;
+let previousBodyOverflow="";
+function openProject(project){
+ projectTrigger=document.activeElement;
+ document.getElementById("project-detail-title").textContent=project.title;
+
+ const statusEl = document.getElementById("project-detail-status");
+ if(project.modalSubtitle){
+   statusEl.textContent = project.modalSubtitle;
+   statusEl.dataset.status = /under review/i.test(project.modalSubtitle) ? "review" : "update";
+   statusEl.hidden = false;
+ } else {
+   statusEl.textContent = "";
+   statusEl.hidden = true;
+ }
+
+ const descContainer=document.getElementById("project-detail-description");
+ descContainer.replaceChildren();
+ const paragraphs=Array.isArray(project.details)
+  ? project.details
+  : String(project.details || "").split(/\n\s*\n/);
+ paragraphs.forEach(text=>{
+  const content=String(text).trim();
+  if(!content)return;
+  const paragraph=document.createElement("p");
+  paragraph.textContent=content;
+  descContainer.appendChild(paragraph);
+ });
+ const tags=projectDialog.querySelector(".project-detail-tags");tags.replaceChildren();
+ [...new Set([...project.topics,...(projectTechnologies[project.title]||[])])].forEach(topic=>{const tag=document.createElement("span");tag.className="project-detail-tag";tag.textContent=topic;tags.append(tag)});
+ const gallery=projectDialog.querySelector(".project-gallery");gallery.replaceChildren();
+ (projectGalleries[project.title]||[]).forEach((item,index)=>{
+  const figure=document.createElement("figure");
+  const placeholder=()=>{
+   const box=document.createElement("div");box.className="project-image-placeholder";
+   box.innerHTML=svg(project.icon);
+   const title=document.createElement("strong");title.textContent=item.placeholder||"Project image";
+   const hint=document.createElement("span");hint.textContent="Image "+String(index+1).padStart(2,"0")+" · Add your project visual here";
+   box.append(title,hint);figure.replaceChildren(box);
+   if(item.caption){const caption=document.createElement("figcaption");caption.textContent=item.caption;figure.append(caption)}
+  };
+  if(item.src){
+    if(item.type === "video" || item.src.endsWith(".mp4")){
+      const vid = document.createElement("video");
+      vid.src = item.src;
+      if(item.poster) vid.poster = item.poster;
+      vid.controls = true;
+      vid.playsInline = true;
+      vid.preload = "metadata";
+      figure.append(vid);
+    } else {
+      const img = document.createElement("img");
+      img.alt = item.alt || project.title;
+      img.src = item.src;
+      img.loading = index === 0 ? "eager" : "lazy";
+      img.onerror = placeholder;
+      figure.append(img);
+    }
+    if(item.caption){
+      const caption = document.createElement("figcaption");
+      caption.textContent = item.caption;
+      figure.append(caption);
+    }
+  } else placeholder();
+  gallery.append(figure);
+ });
+ if(!projectDialog.open){previousBodyOverflow=document.body.style.overflow;document.body.style.overflow="hidden";projectDialog.showModal()}
+ projectDialog.scrollTop=0;
+}
+projectDialog.querySelector(".project-detail-close").onclick=()=>projectDialog.close();
+projectDialog.addEventListener("click",event=>{if(event.target===projectDialog){const r=projectDialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)projectDialog.close()}});
+projectDialog.addEventListener("close",()=>{
+  document.body.style.overflow=previousBodyOverflow;
+  projectDialog.querySelectorAll("video").forEach(v=>v.pause());
+  if(projectTrigger&&projectTrigger.isConnected)projectTrigger.focus();
+});
+
+// Add actual URLs here. Setting demo to "modal" launches the case study video modal.
+const projectDestinations=Object.fromEntries(projects.map(p=>[p.title,{demo:null,paper:null,code:null}]));
+projectDestinations["AdaSparge"].demo="modal";
+projectDestinations["Adaptive Fidelity Bayesian Optimization"].demo="modal";
+projectDestinations["Adaptive Fidelity Bayesian Optimization"].paper="https://arxiv.org/abs/2603.18417";
+projectDestinations["Efficient OCR Domain Adaptation"].demo="modal";
+projectDestinations["Efficient OCR Domain Adaptation"].paper="https://arxiv.org/abs/2603.28028";
+projectDestinations["Fused GEMM + GELU"].demo="modal";
+projectDestinations["Fused GEMM + GELU"].code="https://github.com/devaru-ai/fused-gemm-activation";
+projectDestinations["Disaggregated Inference Platform"].demo="modal";
+projectDestinations["Disaggregated Inference Platform"].code="https://github.com/devaru-ai/disaggregated-inference-platform";
+
+drawings.play='<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/>';
+// Simplified arXiv-style crossed mark for the Paper action.
+drawings.arxiv='<path d="m6 3 12 18M18 3 6 21M6 3l5 4m7 14-5-4"/>';
+let filter="All",page=1;
+function renderProjects(){
+const filtered=projects.filter(p=>filter==="All"||p.topics.includes(filter));
+const pages=Math.max(1,Math.ceil(filtered.length/6));page=Math.min(page,pages);
+const grid=document.getElementById("project-grid");grid.innerHTML="";
+filtered.slice((page-1)*6,page*6).forEach(p=>{
+const card=document.createElement("article");card.className="card"+(p.placeholder?" placeholder-card":"");
+const media = p.image 
+  ? `<img src="${p.image}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;display:block;">` 
+  : `${svg(p.icon)}<span class="image-label">${p.placeholder?"Add project image":"Project image placeholder"}</span>`;
+
+card.innerHTML=`<div class="project-image">${media}</div><div class="card-body"><div class="category">${p.placeholder?"Your next project":p.topics.join(" · ")}</div><h3><button class="project-title">${p.title}</button></h3><p>${p.description}</p><div class="card-links"></div></div>`;
+card.querySelector(".project-title").onclick=()=>openProject(p);
+card.querySelector(".project-image").onclick=()=>openProject(p);
+const thumbnail=card.querySelector(".project-image img");
+if(thumbnail)thumbnail.onerror=()=>{thumbnail.parentElement.innerHTML=svg(p.icon)};
+const destinations=projectDestinations[p.title]||{};
+const actions=[["Demo","demo",svg("play")],["Paper","paper",svg("arxiv")],["Code","code",svg("github")]];
+actions.forEach(([label,key,icon])=>{
+ const url=destinations[key];
+ const action=document.createElement(url && url !== "modal" ? "a" : "button");
+ action.className="project-action";
+ action.innerHTML=icon+`<span>${label}</span>`;
+ if(url === "modal"){
+   action.onclick=(e)=>{e.preventDefault();openProject(p)};
+   action.setAttribute("aria-label",`${label} for ${p.title}`);
+ } else if(url){
+   action.href=url;
+   action.target="_blank";
+   action.rel="noopener noreferrer";
+   action.setAttribute("aria-label",`${label} for ${p.title}`);
+ } else {
+   action.disabled=true;
+   action.title=`${label} not available yet.`;
+   action.setAttribute("aria-label",`${label} unavailable for ${p.title}`);
+ }
+ card.querySelector(".card-links").appendChild(action);
+});
+grid.appendChild(card);
+});
+document.getElementById("page-label").textContent=`Page ${page} of ${pages}`;
+document.getElementById("previous").disabled=page===1;
+document.getElementById("next").disabled=page===pages;
+document.getElementById("project-note").textContent="";
+}
+document.querySelectorAll(".filter").forEach(button=>button.onclick=()=>{
+filter=button.dataset.filter;page=1;
+document.querySelectorAll(".filter").forEach(b=>{b.classList.toggle("active",b===button);b.setAttribute("aria-pressed",String(b===button))});
+renderProjects();
+});
+document.getElementById("previous").onclick=()=>{page--;renderProjects()};
+document.getElementById("next").onclick=()=>{page++;renderProjects()};
+
+// Suggested associations for the portfolio draft; review for accuracy.
+const skillProjects={
+ "ONNX":["Efficient OCR Domain Adaptation"],
+ "CUTLASS":["Fused GEMM + GELU"],
+ "NCCL":["Disaggregated Inference Platform"],
+ "DeepSpeed":["Efficient OCR Domain Adaptation"],
+ "Docker":["Disaggregated Inference Platform"],
+ "Kubernetes":["Disaggregated Inference Platform"],
+ "PyTorch":["AdaSparge", "Adaptive Fidelity Bayesian Optimization", "Efficient OCR Domain Adaptation", "Fused GEMM + GELU", "PyTorch Framework & Kernel Internals"],
+ "CUDA":["AdaSparge", "Fused GEMM + GELU", "Disaggregated Inference Platform", "Adaptive Fidelity Bayesian Optimization", "Efficient OCR Domain Adaptation", "PyTorch Framework & Kernel Internals"],
+ "Triton":["Fused GEMM + GELU"],
+ "Nsight":["Fused GEMM + GELU"],
+ "vLLM":["Disaggregated Inference Platform","Cost-Aware Preemption"],
+ "SGLang":["Disaggregated Inference Platform"],
+ "TensorRT-LLM":["Disaggregated Inference Platform"],
+ "Python":["Python Systems & Runtime Internals", "AdaSparge", "Adaptive Fidelity Bayesian Optimization", "Efficient OCR Domain Adaptation", "Disaggregated Inference Platform", "Cost-Aware Preemption", "Fused GEMM + GELU", "PyTorch Framework & Kernel Internals"],
+ "C++":["C++ Low-Level Design & Systems Architecture","PyTorch Framework & Kernel Internals"],
+ "Linux":["Disaggregated Inference Platform", "Fused GEMM + GELU", "AdaSparge", "Adaptive Fidelity Bayesian Optimization", "Efficient OCR Domain Adaptation", "Python Systems & Runtime Internals", "C++ Low-Level Design & Systems Architecture", "PyTorch Framework & Kernel Internals"]
+};
+const skillGroups=[
+["Artificial Intelligence",[
+["PyTorch",svg("torch"),"#ee4c2c","I use PyTorch for sparse-attention and OCR research, model experiments, and performance evaluation."],
+["ONNX","ONNX","#34343a","ONNX is part of my model deployment toolkit, connecting model representations with inference runtimes.",true]
+]],
+["GPU Systems & Performance",[
+["CUDA",svg("chip"),"#76b900","My GPU work includes CUDA, memory-access optimization, occupancy, and performance analysis."],
+["Triton","T","#e45d44","I develop Triton GPU kernels, including fused GEMM + GELU, with tiling and occupancy tuning."],
+["CUTLASS","CUTLASS","#68a51b","CUTLASS is part of my toolkit for studying efficient GEMM implementations and Tensor Core computation.",true],
+["Nsight",svg("chart"),"#76b900","I use Nsight Compute and Nsight Systems to investigate kernel bottlenecks, GPU utilization, and execution timelines."]
+]],
+["Inference & Distributed Systems",[
+["vLLM","vLLM","#3978cf","I use vLLM for inference benchmarking and scheduler optimization, including cost-aware KV-cache preemption.",true],
+["SGLang","SGL","#e1793f","I benchmark SGLang, studying prefix reuse, RadixAttention, and serving throughput."],
+["TensorRT-LLM","TRT","#76b900","TensorRT-LLM is one of the frameworks in my inference benchmarking work on A100 and H100 GPUs."],
+["NCCL","NCCL","#76b900","My distributed GPU toolkit includes NCCL and collective communication concepts.",true],
+["DeepSpeed","DS","#ef7649","DeepSpeed is part of my distributed training toolkit, including memory-efficient training concepts."]
+]],
+["Languages & Infrastructure",[
+["Python","Py","#3776ab","I use Python for research experiments, evaluation, benchmarking, and GPU workload orchestration."],
+["C++","C++","#336eae","C++ is part of my systems toolkit, including memory management, data structures, and performance-oriented programming."],
+["Linux",svg("terminal"),"#35353c","Linux is my working environment for GPU development and running research experiments."],
+["Docker",svg("docker"),"#2496ed","I use container tooling to package software environments and dependencies."],
+["Kubernetes",svg("network"),"#326ce5","Kubernetes is part of my infrastructure background for container orchestration and AI workloads."]
+]]
+];
+skillGroups.forEach(([name,skills])=>{
+const group=document.createElement("div");group.className="skill-group";
+const heading=document.createElement("h3");heading.textContent=name;
+const items=document.createElement("div");items.className="skill-items";
+skills.forEach(([name,mark,color,description,word])=>{
+const b=document.createElement("button");b.className="skill";
+b.setAttribute("aria-label",`Learn about my experience with ${name}`);
+b.innerHTML=`<span class="mark ${word?"word":""}" style="--color:${color}" aria-hidden="true">${mark}</span><span class="skill-label">${name}</span>`;
+b.onclick=()=>showDialog(name,description,"Skills & Technologies",null,skillProjects[name]||[]);items.appendChild(b);
+});
+group.append(heading,items);document.getElementById("skill-groups").appendChild(group);
+});
+
+const milestones=[
+  [
+    "Systems Research",
+    "University of Cincinnati",
+    "Feb 2026 – Present",
+    "Developed efficient AI systems across sparse attention, GPU kernels, and distributed inference, connecting model-level optimizations to serving performance. Built AdaSparge, an adaptive attention controller that achieved 5.5× kernel acceleration and 2× inference speedup in evaluated settings across text, image, and video models. Made sparsity configuration more efficient through adaptive-fidelity Bayesian optimization, reducing search time by 3.4× with 8.8× fewer evaluations than exhaustive grid search.\n\nAlongside this research, engineered fused Triton GEMM + GELU kernels reaching up to 86% of cuBLAS throughput on tested FP32 workloads, and built DIP v2 to benchmark vLLM, SGLang, and TensorRT-LLM on A100/H100 GPUs. Investigated how KV-cache movement, memory pressure, and queue management affect throughput and latency as context lengths and serving loads grow.",
+    "Research",
+    "chip"
+  ],
+  [
+    "Model Training",
+    "University of Cincinnati",
+    "Jan 2024 – Present",
+    "Built a modular handwriting-recognition pipeline to adapt across modern and historical documents without retraining an entire end-to-end model. Combined DINO-DETR character detection with T5 and ByT5 language correction, using synthetic recognition errors to train the correction stage. Achieved domain adaptation in approximately 4.5 hours on a single A100 and effective batched decoding of 7–10 ms per line. Evaluated both recognition accuracy and preservation of historical spelling, identifying when language correction improves transcription—and when it changes the original text.",
+    "Research",
+    "research"
+  ],
+  [
+    "MS, Computer Science",
+    "University of Cincinnati",
+    "Aug 2023 – Present",
+    "Pursuing a Master of Science in Computer Science with research spanning efficient AI inference, sparse attention, GPU kernel optimization, and document recognition. Graduate work connects model-level efficiency with the systems required to deploy AI across GPUs. Received the Graduate Incentive Award for 2023–2025, recognizing academic and research excellence among the top 10% of graduate students.",
+    "Education",
+    "education"
+  ],
+  [
+    "Quality Engineering",
+    "FamPay",
+    "Dates to add",
+    "Supported the daily operation and quality of FamPlay, FamPay’s gamification feature, with a focus on reliable releases and cross-platform testing. Built an automated testing framework with Selenium, TestNG, and BrowserStack, covering more than 100 test cases across Android and iOS and reducing basic test execution time by 40%. This work took place during a period when FamPay reported 47% platform revenue growth, more than four million users, and average engagement of 45 minutes per week.",
+    "Experience",
+    "work"
+  ],
+  [
+    "Machine Learning Intern",
+    "ODU",
+    "May 2021 – July 2021",
+    "Led a five-person team developing a machine-learning model to classify incoming customer calls by issue severity. Focused the project on identifying urgent issues so that critical cases could receive faster attention. The resulting call-prioritization approach reduced critical-issue response time by 30%, connecting model development to a measurable improvement in customer-support operations.",
+    "Internship",
+    "work"
+  ],
+  [
+    "BE, Computer Science & Engineering",
+    "Visvesvaraya Technological University",
+    "Aug 2018 – Jul 2022",
+    "Completed a Bachelor of Engineering in Computer Science and Engineering at Visvesvaraya Technological University. This undergraduate training provided the foundation for subsequent work in software engineering, machine-learning research, and graduate study in efficient AI systems. During the degree, completed a machine-learning research internship at Old Dominion University, applying technical skills to customer-call prioritization.",
+    "Education",
+    "education"
+  ]
+];
+// Tags summarize supplied experience; no unsupported awards or metrics.
+const journeyAchievements={
+ "Systems Research":["2× inference speedup in evaluated settings","5.5× attention-kernel acceleration","GPU serving benchmarks"],
+ "Model Training":["Modular OCR adaptation","Single-A100 training","7–10 ms/line in batched decoding"],
+ "MS, Computer Science":["Graduate research","Efficient AI inference","GPU systems"],
+ "Quality Engineering":["Release quality assurance","Test case development","Bug investigation","Product–engineering collaboration"],
+ "Machine Learning Intern":["Led a five-person ML team","Built severity-based call classification","30% faster critical-issue response"],
+ "BE, Computer Science & Engineering":["BE in Computer Science & Engineering","Completed ML research internship at ODU","Applied ML to customer-call prioritization"]
+};
+const timeline=document.getElementById("timeline");
+milestones.forEach(([title,organization,date,description,type,icon])=>{
+const article=document.createElement("article");article.className="milestone";
+const b=document.createElement("button");b.className="milestone-card";b.setAttribute("aria-label",`Read more about ${title}`);
+const categoryColor=type==="Education"?"#22c55e":type==="Research"?"#8b5cf6":"#3b82f6";
+b.innerHTML=`<h3>${title}</h3><p class="organization">${organization}</p><span class="date">${svg("calendar")}${date}</span><p class="milestone-description">${description}</p><span class="milestone-category" style="--category-color:${categoryColor}"><span class="milestone-icon">${svg(icon)}</span><span class="milestone-category-label">${type}</span></span>`;
+b.onclick=()=>showDialog(title,description,`${organization} · ${date}`,journeyAchievements[title]||[],null,true);
+article.appendChild(b);timeline.appendChild(article);
+});
+const left=document.getElementById("timeline-left"),right=document.getElementById("timeline-right");
+const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
+function updateArrows(){left.disabled=timeline.scrollLeft<=2;right.disabled=timeline.scrollLeft+timeline.clientWidth>=timeline.scrollWidth-2}
+function scrollTimeline(direction){
+const card=timeline.querySelector(".milestone");
+const step=card.getBoundingClientRect().width+parseFloat(getComputedStyle(timeline).gap);
+timeline.scrollBy({left:direction*step,behavior:reducedMotion.matches?"auto":"smooth"});
+}
+left.onclick=()=>scrollTimeline(-1);right.onclick=()=>scrollTimeline(1);
+timeline.addEventListener("scroll",updateArrows,{passive:true});
+window.addEventListener("resize",updateArrows);
+timeline.addEventListener("keydown",e=>{
+if(e.target!==timeline)return;
+if(e.key==="ArrowRight"){e.preventDefault();scrollTimeline(1)}
+if(e.key==="ArrowLeft"){e.preventDefault();scrollTimeline(-1)}
+});
+requestAnimationFrame(updateArrows);
+function activateNav(id){
+document.querySelectorAll("nav button").forEach(b=>{
+const active=b.dataset.section===id;b.classList.toggle("active",active);b.setAttribute("aria-pressed",String(active));
+});
+}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
+const section=document.getElementById(b.dataset.section);activateNav(section.id);
+section.scrollIntoView({behavior:reducedMotion.matches?"auto":"smooth"});
+});
+document.querySelectorAll("[data-message]").forEach(b=>b.onclick=()=>showDialog("Add your link",b.dataset.message));
+document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener("click",()=>activateNav(link.getAttribute("href").slice(1))));
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)activateNav(entry.target.id)}),{rootMargin:"-15% 0px -55% 0px",threshold:0});
+["home","projects","skills","experience"].forEach(id=>observer.observe(document.getElementById(id)));
+renderProjects();
+</script>
+</body>
+</html>

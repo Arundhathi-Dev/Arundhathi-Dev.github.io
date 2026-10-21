@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="100%" height="100%" fill="none">
+  <defs>
+    <!-- Light Grid -->
+    <pattern id="lightGridBO" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" stroke="#f1f5f9" stroke-width="1.2" />
+    </pattern>
+  </defs>
+
+  <!-- Clean Light Canvas -->
+  <rect width="400" height="200" fill="#fafbfc" />
+  <rect width="400" height="200" fill="url(#lightGridBO)" />
+
+  <!-- ================= LEFT: 3D SEARCH SPACE ================= -->
+  <g transform="translate(36, 56)">
+    <!-- 3D Isometric Bounding Frame -->
+    <polygon points="12,68 40,46 100,46 72,68" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.8" opacity="0.6" />
+    <polygon points="12,68 12,108 72,108 72,68" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.8" opacity="0.6" />
+    <polygon points="72,68 100,46 100,86 72,108" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.8" opacity="0.6" />
+
+    <!-- Isometric Coordinate Axes (No text labels) -->
+    <path d="M 12 108 L 12 28 M 12 108 L 92 108 M 12 108 L 44 76" stroke="#475569" stroke-width="1.2" stroke-linecap="round" />
+    
+    <!-- Coordinate Arrow Tips -->
+    <polygon points="12,24 9,29 15,29" fill="#475569" />
+    <polygon points="96,108 91,105 91,111" fill="#475569" />
+    <polygon points="46,74 41,75 43,80" fill="#475569" />
+
+    <!-- 3D Point Grid -->
+    <!-- Back row -->
+    <circle cx="36" cy="56" r="2.5" fill="#ef4444" opacity="0.4" />
+    <circle cx="58" cy="52" r="2.5" fill="#ef4444" opacity="0.5" />
+    <circle cx="82" cy="58" r="2" fill="#ef4444" opacity="0.3" />
+    <!-- Middle row -->
+    <circle cx="28" cy="74" r="2.5" fill="#ef4444" opacity="0.6" />
+    <circle cx="52" cy="66" r="3" fill="#ef4444" />
+    <circle cx="76" cy="70" r="2.5" fill="#ef4444" opacity="0.7" />
+    <!-- Front row -->
+    <circle cx="22" cy="94" r="2" fill="#ef4444" opacity="0.4" />
+    <circle cx="44" cy="88" r="2.5" fill="#ef4444" opacity="0.8" />
+    <circle cx="68" cy="92" r="2" fill="#ef4444" opacity="0.5" />
+
+    <!-- Connecting Grid Lines -->
+    <path d="M 28 74 L 52 66 L 76 70 M 22 94 L 44 88 M 36 56 L 58 52" stroke="#f87171" stroke-width="0.8" stroke-dasharray="1.5 1.5" fill="none" opacity="0.5" />
+    <path d="M 36 56 L 28 74 M 58 52 L 52 66 M 82 58 L 76 70" stroke="#f87171" stroke-width="0.8" stroke-dasharray="1.5 1.5" fill="none" opacity="0.5" />
+
+    <!-- Section Subtitle -->
+    <text x="54" y="125" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8.5" font-weight="700" fill="#475569" text-anchor="middle" letter-spacing="0.5">3D SEARCH SPACE</text>
+  </g>
+
+  <!-- ================= MIDDLE: MATÉRN 5/2 PROJECTION ================= -->
+  <g transform="translate(154, 88)">
+    <path d="M 0 10 L 32 10" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" />
+    <polygon points="30,6 38,10 30,14" fill="#ef4444" />
+
+    <rect x="-14" y="-20" width="60" height="18" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" />
+    <text x="16" y="-8" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" font-weight="700" fill="#475569" text-anchor="middle" letter-spacing="0.5">Matérn 5/2</text>
+    <text x="16" y="24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="7.5" font-weight="600" fill="#94a3b8" text-anchor="middle">Projection</text>
+  </g>
+
+  <!-- ================= RIGHT: 1D PROJECTION ================= -->
+  <g transform="translate(224, 56)">
+    <rect width="140" height="116" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" />
+
+    <!-- Confidence Interval Region -->
+    <path d="M 14 74 Q 40 40, 72 68 T 128 52 L 128 84 Q 102 102, 72 80 T 14 96 Z" fill="#eff6ff" opacity="0.8" />
+
+    <!-- 1D Function Curve -->
+    <path d="M 14 85 Q 40 54, 72 74 T 128 68" stroke="#3b82f6" stroke-width="2.2" stroke-linecap="round" fill="none" />
+
+    <!-- Evaluated Points -->
+    <circle cx="34" cy="62" r="3" fill="#ef4444" stroke="#ffffff" stroke-width="0.8" />
+    <circle cx="112" cy="71" r="3" fill="#ef4444" stroke="#ffffff" stroke-width="0.8" />
+
+    <!-- Optimal Sample Point -->
+    <circle cx="72" cy="74" r="5" fill="#ef4444" />
+    <circle cx="72" cy="74" r="2" fill="#ffffff" />
+
+    <!-- 1D Axis Baseline (No text label) -->
+    <line x1="12" y1="96" x2="128" y2="96" stroke="#94a3b8" stroke-width="1.2" stroke-linecap="round" />
+    <polygon points="132,96 127,93 127,99" fill="#94a3b8" />
+
+    <!-- Section Subtitle -->
+    <text x="70" y="125" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8.5" font-weight="700" fill="#475569" text-anchor="middle" letter-spacing="0.5">1D PROJECTION</text>
+  </g>
+
+  <!-- Top Title -->
+  <text x="200" y="24" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#334155" text-anchor="middle" letter-spacing="1">ADAPTIVE FIDELITY BAYESIAN OPTIMIZATION</text>
+  <text x="200" y="36" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="7.5" font-weight="600" fill="#94a3b8" text-anchor="middle" letter-spacing="0.5">HIGH-DIMENSIONAL TUNING FOR SYSTEM EFFICIENCY</text>
+</svg>

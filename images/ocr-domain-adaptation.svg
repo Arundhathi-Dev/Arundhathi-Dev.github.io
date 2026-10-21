@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="100%" height="100%" fill="none">
+  <defs>
+    <!-- Background grid -->
+    <pattern id="lightGridGW" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" stroke="#f1f5f9" stroke-width="1.2" />
+    </pattern>
+  </defs>
+
+  <!-- Canvas background -->
+  <rect width="400" height="200" fill="#fafbfc" />
+  <rect width="400" height="200" fill="url(#lightGridGW)" />
+
+  <!-- ================= 1. LEGIBLE HISTORICAL TEXT LINE ================= -->
+  <g transform="translate(8, 56)">
+    <!-- Parchment paper slip -->
+    <rect width="122" height="66" rx="4" fill="#fdfbf7" stroke="#d5cebf" stroke-width="1.2" />
+    
+    <!-- Lined manuscript rulings -->
+    <line x1="6" y1="23" x2="116" y2="23" stroke="#e8dfce" stroke-width="0.8" stroke-dasharray="2 2" />
+    <line x1="6" y1="37" x2="116" y2="37" stroke="#ded2bd" stroke-width="0.8" />
+    <line x1="6" y1="53" x2="116" y2="53" stroke="#ded2bd" stroke-width="0.8" />
+
+    <!-- Line 1: "Letters, Orders" (Clean, fully connected cursive paths) -->
+    <!-- L -->
+    <path d="M 12 37 C 10 32, 13 22, 14 18 C 15 22, 12 37, 14 37 C 15 37, 18 36, 19 37" stroke="#1c1917" stroke-width="1.4" stroke-linecap="round" fill="none" />
+    <!-- e -->
+    <path d="M 19 37 C 19 33, 22 30, 23 32 C 24 35, 20 37, 24 37" stroke="#1c1917" stroke-width="1.4" stroke-linecap="round" fill="none" />
+    <!-- tt -->
+    <path d="M 24 37 L 26 25 M 23 29 L 30 29 M 26 37 L 28 25 M 26 29 L 32 29" stroke="#1c1917" stroke-width="1.3" stroke-linecap="round" fill="none" />
+    <!-- e -->
+    <path d="M 28 37 C 28 33, 31 30, 32 32 C 33 35, 29 37, 33 37" stroke="#1c1917" stroke-width="1.4" stroke-linecap="round" fill="none" />
+    <!-- r -->
+    <path d="M 33 37 L 34 31 C 35 30, 37 30, 37 32 L 37 37" stroke="#1c1917" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <!-- s -->
+    <path d="M 37 37 C 39 33, 40 31, 41 33 C 41 36, 38 37, 42 37" stroke="#1c1917" stroke-width="1.4" stroke-linecap="round" fill="none" />
+    <!-- comma -->
+    <path d="M 43 38 C 43 40, 41 42, 40 43" stroke="#1c1917" stroke-width="1.4" stroke-linecap="round" fill="none" />
+
+    <!-- O -->
+    <ellipse cx="51" cy="31" rx="4" ry="5.5" stroke="#1c1917" stroke-width="1.4" fill="none" />
+    <!-- r -->
+    <path d="M 55 33 L 56 31 C 57 30, 59 30, 59 32 L 59 37" stroke="#1c1917" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <!-- d -->
+    <path d="M 64 34 C 64 31, 61 31, 60 34 C 60 37, 63 37, 64 37 L 64 24" stroke="#1c1917" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <!-- e -->
+    <path d="M 64 37 C 65 33, 68 30, 69 32 C 70 35, 66 37, 70 37" stroke="#1c1917" stroke-width="1.4" stroke-linecap="round" fill="none" />
+    <!-- r -->
+    <path d="M 70 37 L 71 31 C 72 30, 74 30, 74 32 L 74 37" stroke="#1c1917" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <!-- s -->
+    <path d="M 74 37 C 76 33, 77 31, 78 33 C 78 36, 75 37, 79 37" stroke="#1c1917" stroke-width="1.4" stroke-linecap="round" fill="none" />
+
+    <!-- Line 2: "and Instructions" -->
+    <!-- and -->
+    <path d="M 12 50 C 12 47, 15 47, 15 50 C 15 53, 12 53, 15 53 L 15 47 M 15 53 C 16 49, 18 49, 18 53 C 19 49, 21 49, 21 53 M 24 50 C 24 47, 22 47, 21 50 C 21 53, 23 53, 24 53 L 24 45" stroke="#1c1917" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+    <!-- I -->
+    <path d="M 31 43 C 28 43, 33 43, 31 53 M 28 53 L 34 53" stroke="#1c1917" stroke-width="1.3" stroke-linecap="round" fill="none" />
+    <!-- n -->
+    <path d="M 35 53 C 35 49, 37 49, 37 53 C 38 49, 40 49, 40 53" stroke="#1c1917" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <!-- s -->
+    <path d="M 41 53 C 42 50, 44 49, 44 51 C 44 53, 42 53, 45 53" stroke="#1c1917" stroke-width="1.3" stroke-linecap="round" fill="none" />
+    <!-- t -->
+    <path d="M 46 45 L 46 53 M 44 48 L 48 48" stroke="#1c1917" stroke-width="1.3" stroke-linecap="round" fill="none" />
+    <!-- r -->
+    <path d="M 47 53 L 48 49 C 49 48, 51 48, 51 50 L 51 53" stroke="#1c1917" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <!-- u -->
+    <path d="M 52 49 L 52 52 C 52 54, 55 54, 55 52 L 55 49" stroke="#1c1917" stroke-width="1.3" stroke-linecap="round" fill="none" />
+    <!-- c -->
+    <path d="M 59 49 C 57 48, 56 50, 56 52 C 56 54, 59 53, 59 52" stroke="#1c1917" stroke-width="1.3" stroke-linecap="round" fill="none" />
+    <!-- t -->
+    <path d="M 61 45 L 61 53 M 59 48 L 63 48" stroke="#1c1917" stroke-width="1.3" stroke-linecap="round" fill="none" />
+    <!-- i -->
+    <path d="M 64 49 L 64 53 M 64 46 L 64 47" stroke="#1c1917" stroke-width="1.3" stroke-linecap="round" fill="none" />
+    <!-- o -->
+    <ellipse cx="68" cy="51" rx="2.5" ry="2.5" stroke="#1c1917" stroke-width="1.3" fill="none" />
+    <!-- n -->
+    <path d="M 72 53 C 72 49, 74 49, 74 53 C 75 49, 77 49, 77 53" stroke="#1c1917" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <!-- s -->
+    <path d="M 78 53 C 79 50, 81 49, 81 51 C 81 53, 79 53, 82 53" stroke="#1c1917" stroke-width="1.3" stroke-linecap="round" fill="none" />
+
+    <!-- Sub-labels -->
+    <text x="61" y="82" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#334155" text-anchor="middle">Text Line</text>
+    <text x="61" y="93" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="7" font-weight="600" fill="#94a3b8" text-anchor="middle">Washington Dataset</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <g transform="translate(134, 82)">
+    <line x1="0" y1="6" x2="8" y2="6" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" />
+    <polygon points="7,3 13,6 7,9" fill="#94a3b8" />
+  </g>
+
+  <!-- ================= 2. DINO-DETR ================= -->
+  <g transform="translate(150, 56)">
+    <rect width="62" height="66" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" />
+    <rect x="4" y="4" width="54" height="58" rx="4" fill="#f8fafc" />
+
+    <!-- Query Brackets & Feature Keypoints -->
+    <g transform="translate(15, 17)">
+      <path d="M 4 8 L 4 4 L 8 4" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round" fill="none" />
+      <path d="M 28 8 L 28 4 L 24 4" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round" fill="none" />
+      <path d="M 4 20 L 4 24 L 8 24" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round" fill="none" />
+      <path d="M 28 20 L 28 24 L 24 24" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round" fill="none" />
+      
+      <circle cx="11" cy="14" r="2" fill="#38bdf8" />
+      <circle cx="16" cy="14" r="2" fill="#2563eb" />
+      <circle cx="21" cy="14" r="2" fill="#38bdf8" />
+      <line x1="9" y1="14" x2="23" y2="14" stroke="#93c5fd" stroke-width="1" stroke-dasharray="1.5 1.5" />
+    </g>
+
+    <text x="31" y="82" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#1e40af" text-anchor="middle">DINO-DETR</text>
+    <text x="31" y="93" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="7" font-weight="600" fill="#94a3b8" text-anchor="middle">Vision Features</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <g transform="translate(216, 82)">
+    <line x1="0" y1="6" x2="8" y2="6" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" />
+    <polygon points="7,3 13,6 7,9" fill="#94a3b8" />
+  </g>
+
+  <!-- ================= 3. BART ================= -->
+  <g transform="translate(230, 56)">
+    <rect width="56" height="66" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" />
+    <rect x="4" y="4" width="48" height="58" rx="4" fill="#f0fdf4" stroke="#dcfce7" stroke-width="1" />
+
+    <!-- Bidirectional Encoder-Decoder Transformer Graphic -->
+    <g transform="translate(10, 17)">
+      <rect x="0" y="3" width="12" height="22" rx="2" fill="#bbf7d0" stroke="#16a34a" stroke-width="1" />
+      <line x1="3" y1="8" x2="9" y2="8" stroke="#15803d" stroke-width="1.2" />
+      <line x1="3" y1="14" x2="9" y2="14" stroke="#15803d" stroke-width="1.2" />
+      <line x1="3" y1="20" x2="9" y2="20" stroke="#15803d" stroke-width="1.2" />
+      
+      <path d="M 12 14 L 16 14" stroke="#16a34a" stroke-width="1.4" stroke-dasharray="1.5 1.5" />
+      
+      <rect x="16" y="3" width="12" height="22" rx="2" fill="#86efac" stroke="#15803d" stroke-width="1" />
+      <line x1="19" y1="8" x2="25" y2="8" stroke="#14532d" stroke-width="1.2" />
+      <line x1="19" y1="14" x2="25" y2="14" stroke="#14532d" stroke-width="1.2" />
+      <line x1="19" y1="20" x2="25" y2="20" stroke="#14532d" stroke-width="1.2" />
+    </g>
+
+    <text x="28" y="82" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#15803d" text-anchor="middle">BART</text>
+    <text x="28" y="93" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="7" font-weight="600" fill="#94a3b8" text-anchor="middle">Seq2Seq Decoder</text>
+  </g>
+
+  <!-- Arrow 3 -->
+  <g transform="translate(290, 82)">
+    <line x1="0" y1="6" x2="8" y2="6" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" />
+    <polygon points="7,3 13,6 7,9" fill="#94a3b8" />
+  </g>
+
+  <!-- ================= 4. TRANSCRIBED STRING ================= -->
+  <g transform="translate(304, 56)">
+    <rect width="88" height="66" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" />
+    <rect x="4" y="4" width="80" height="58" rx="4" fill="#0f172a" />
+    
+    <!-- Exact digital output -->
+    <text x="10" y="24" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#e2e8f0">Letters,</text>
+    <text x="10" y="37" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#38bdf8">Orders and</text>
+    <text x="10" y="50" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#38bdf8">Instructions<tspan fill="#38bdf8">_</tspan></text>
+
+    <text x="44" y="82" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#334155" text-anchor="middle">Transcribed Line</text>
+    <text x="44" y="93" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="7" font-weight="600" fill="#94a3b8" text-anchor="middle">Ground Truth Text</text>
+  </g>
+
+  <!-- Top Title -->
+  <text x="200" y="24" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#1e293b" text-anchor="middle" letter-spacing="0.8">HISTORICAL OCR DOMAIN ADAPTATION</text>
+  <text x="200" y="37" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="7.5" font-weight="600" fill="#64748b" text-anchor="middle">MANUSCRIPT LINE → DINO-DETR → BART → TRANSCRIBED STRING</text>
+</svg>

@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="100%" height="100%" fill="none">
+  <defs>
+    <!-- Dark Background Subtle Grid -->
+    <pattern id="darkGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" stroke="#18181b" stroke-width="0.8" />
+    </pattern>
+
+    <!-- Glowing Filters -->
+    <filter id="glowPrefill" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#38bdf8" flood-opacity="0.35" />
+    </filter>
+    <filter id="glowDecode" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#34d399" flood-opacity="0.35" />
+    </filter>
+    <filter id="glowBus" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#818cf8" flood-opacity="0.6" />
+    </filter>
+
+    <!-- Gradients -->
+    <linearGradient id="prefillGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+
+    <linearGradient id="decodeGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#34d399" />
+    </linearGradient>
+
+    <linearGradient id="pipeGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#34d399" />
+    </linearGradient>
+  </defs>
+
+  <!-- Base Obsidian Canvas -->
+  <rect width="400" height="200" fill="#09090b" />
+  <rect width="400" height="200" fill="url(#darkGrid)" />
+
+  <!-- Radial ambient back-glows -->
+  <circle cx="91" cy="100" r="65" fill="#0284c7" opacity="0.08" />
+  <circle cx="309" cy="100" r="65" fill="#059669" opacity="0.08" />
+
+  <!-- ================= PREFILL WORKER (DARK) ================= -->
+  <g transform="translate(36, 26)">
+    <!-- Node Container -->
+    <rect width="110" height="142" rx="10" fill="#111116" stroke="#27272a" stroke-width="1.2" />
+    
+    <!-- Accent Top Indicator Bar -->
+    <path d="M 6 0 L 104 0" stroke="url(#prefillGlowGrad)" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Label Badge -->
+    <rect x="14" y="14" width="82" height="20" rx="4" fill="#0c1929" stroke="#1e3a5f" stroke-width="1" />
+    <text x="55" y="28" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#38bdf8" text-anchor="middle" letter-spacing="0.6">PREFILL</text>
+
+    <!-- Compute / Tensor Engine Graphic -->
+    <rect x="20" y="44" width="70" height="46" rx="6" fill="#09090d" stroke="#1f2430" stroke-width="1" />
+    
+    <!-- Matrix Processing Lines -->
+    <path d="M 29 55 L 43 55 M 29 62 L 53 62 M 29 69 L 47 69 M 29 76 L 56 76" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" opacity="0.8" />
+    
+    <!-- Tensor Core Node -->
+    <circle cx="69" cy="67" r="9" fill="#0369a1" filter="url(#glowPrefill)" />
+    <circle cx="69" cy="67" r="4.5" fill="#e0f2fe" />
+
+    <!-- Specs / Subtitle -->
+    <text x="55" y="108" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="600" fill="#e2e8f0" text-anchor="middle">Compute Bound</text>
+    <text x="55" y="122" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#71717a" text-anchor="middle">Chunked Prefill</text>
+  </g>
+
+  <!-- ================= KV-TRANSFER FABRIC ================= -->
+  <!-- Transfer Conduit -->
+  <path d="M 146 102 L 254 102" stroke="#27272a" stroke-width="4" stroke-linecap="round" />
+  <path d="M 146 102 L 254 102" stroke="url(#pipeGlow)" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4" filter="url(#glowBus)" />
+
+  <!-- Animated High-Speed Data Pulses -->
+  <circle cy="102" r="3" fill="#67e8f9">
+    <animate attributeName="cx" values="148;252" dur="1.5s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0;1;1;0" dur="1.5s" repeatCount="indefinite" />
+  </circle>
+  <circle cy="102" r="3" fill="#a78bfa">
+    <animate attributeName="cx" values="148;252" dur="1.5s" begin="0.5s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0;1;1;0" dur="1.5s" begin="0.5s" repeatCount="indefinite" />
+  </circle>
+  <circle cy="102" r="3" fill="#6ee7b7">
+    <animate attributeName="cx" values="148;252" dur="1.5s" begin="1s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0;1;1;0" dur="1.5s" begin="1s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Transfer Protocol Pill -->
+  <g transform="translate(200, 68)">
+    <rect x="-44" y="-12" width="88" height="22" rx="11" fill="#14141b" stroke="#312e81" stroke-width="1.2" />
+    <text x="0" y="3.5" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8.5" font-weight="700" fill="#a5b4fc" text-anchor="middle" letter-spacing="0.5">KV TRANSFER</text>
+    <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" font-weight="500" fill="#71717a" text-anchor="middle">RDMA / NCCL</text>
+  </g>
+
+  <!-- ================= DECODE WORKER (DARK) ================= -->
+  <g transform="translate(254, 26)">
+    <!-- Node Container -->
+    <rect width="110" height="142" rx="10" fill="#111116" stroke="#27272a" stroke-width="1.2" />
+    
+    <!-- Accent Top Indicator Bar -->
+    <path d="M 6 0 L 104 0" stroke="url(#decodeGlowGrad)" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Label Badge -->
+    <rect x="14" y="14" width="82" height="20" rx="4" fill="#062319" stroke="#065f46" stroke-width="1" />
+    <text x="55" y="28" font-family="-apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#34d399" text-anchor="middle" letter-spacing="0.6">DECODE</text>
+
+    <!-- Memory / KV-Cache Graphic -->
+    <rect x="20" y="44" width="70" height="46" rx="6" fill="#09090d" stroke="#1f2430" stroke-width="1" />
+    
+    <!-- Paged KV Blocks -->
+    <rect x="27" y="52" width="10" height="10" rx="2" fill="#059669" filter="url(#glowDecode)" />
+    <rect x="41" y="52" width="10" height="10" rx="2" fill="#10b981" />
+    <rect x="55" y="52" width="10" height="10" rx="2" fill="#34d399" />
+    <rect x="69" y="52" width="8" height="10" rx="2" fill="#27272a" />
+    
+    <!-- Token Generation Path -->
+    <path d="M 28 73 L 72 73 M 68 70 L 73 73 L 68 76" stroke="#34d399" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Specs / Subtitle -->
+    <text x="55" y="108" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="600" fill="#e2e8f0" text-anchor="middle">Bandwidth Bound</text>
+    <text x="55" y="122" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" fill="#71717a" text-anchor="middle">Paged Attention</text>
+  </g>
+
+  <!-- Bottom Architecture Identifier -->
+  <text x="200" y="188" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8" font-weight="600" fill="#52525b" text-anchor="middle" letter-spacing="1.2">DISAGGREGATED SERVING CLUSTER</text>
+</svg>
